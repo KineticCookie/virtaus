@@ -1,0 +1,6 @@
+[submodule "junction-2018-front"]
+	path = junction-2018-front
+	url = git@github.com:tienpham94/junction-2018-front.git
+[submodule "virtaus-backend"]
+	path = virtaus-backend
+	url = git@github.com:KineticCookie/virtaus-backend.git

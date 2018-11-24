@@ -1,0 +1,19 @@
+server {
+	listen 9091 default_server;
+	
+	location /api {
+		proxy_pass http://${BACKEND_HOST};
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Scheme $scheme;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_http_version 1.1;
+	}
+
+	location / {
+		proxy_pass http://${FRONTEND_HOST};
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Scheme $scheme;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_http_version 1.1;
+	}
+}
