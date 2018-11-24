@@ -4,3 +4,6 @@
 [submodule "virtaus-backend"]
 	path = virtaus-backend
 	url = git@github.com:KineticCookie/virtaus-backend.git
+[submodule "virtaus-navigation"]
+	path = virtaus-navigation
+	url = git@github.com:KineticCookie/virtaus-navigation.git

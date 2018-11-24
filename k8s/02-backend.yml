@@ -18,6 +18,7 @@ spec:
           env:
             - name: DATABASE_HOST
               value: virtaus-db-service
+              
 ---
 
 apiVersion: v1
