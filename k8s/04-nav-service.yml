@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: virtaus-nav-service
+  labels:
+    app: virtaus-nav-service
+spec:
+  containers:
+    - name: virtaus-nav-service
+      image: kineticcookie/junction-nav:3
+      ports:
+        - containerPort: 9090
+      env:
+        - name: APP_PORT
+          value: "80"
+        - name: HERE_APP_ID
+          value: "HERE_APP_ID"
+        - name: HERE_APP_CODE
+          value: "HERE_APP_CODE"
+        - name: OSMR_ADDR
+          value: "virtaus-osr-finland-service"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: virtaus-nav-service-service
+spec:
+  selector:
+    app: virtaus-nav-service
+  ports:
+    - protocol: TCP
+      port: 80
+targetPort: 80

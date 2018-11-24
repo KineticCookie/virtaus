@@ -1,5 +1,5 @@
 FROM osrm/osrm-backend AS extractor
-ADD ./data /data
+ADD https://download.geofabrik.de/europe/finland-latest.osm.pbf /data/finland-latest.osm.pbf
 RUN osrm-extract -p /opt/car.lua /data/finland-latest.osm.pbf
 
 FROM osrm/osrm-backend AS partitioner

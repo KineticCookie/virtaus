@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: virtaus-proxy
+  labels:
+    app: virtaus-proxy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: virtaus-proxy
+  template:
+    metadata:
+      labels:
+        app: virtaus-proxy
+    spec:
+      containers:
+      - name: virtaus-proxy
+        image: kineticcookie/virtaus-proxy:latest
+        ports:
+        - containerPort: 80
+        env:
+          - name: BACKEND_HOST
+            value: "virtaus-backend-service"
+          - name: FRONTEND_HOST
+            value: "virtaus-frontend-service"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: virtaus-nav-service-service
+spec:
+  selector:
+    app: virtaus-nav-service
+  ports:
+    - protocol: TCP
+      port: 80
+targetPort: 80

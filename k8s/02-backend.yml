@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: virtaus-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: virtaus-backend
+    spec:
+      containers:
+        - name: virtaus-backend
+          image: kineticcookie/junction-backend:latest
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 9090
+          env:
+            - name: DATABASE_HOST
+              value: virtaus-db-service
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: virtaus-backend-service
+spec:
+  selector:
+    app: virtaus-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9090
